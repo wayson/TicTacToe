@@ -31,7 +31,10 @@ namespace TicTacToe.Controllers
 
                 return RedirectToAction(nameof(EmailConfirmation), new { userModel.Email});
             }
-            return View(userModel);
+            else
+            {
+                return View(userModel);
+            }
         }
 
         [HttpGet]
@@ -41,9 +44,6 @@ namespace TicTacToe.Controllers
             if (user?.IsEmailConfirmed == true)
                 return RedirectToAction("Index", "GameInvitation", new { email = email });
             ViewBag.Email = email;
-            user.IsEmailConfirmed = true;
-            user.EmailConfirmationDate = DateTime.Now;
-            await _userService.UpdateUser(user);
             return View();
         }
     }

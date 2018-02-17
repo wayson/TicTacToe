@@ -17,6 +17,7 @@ namespace TicTacToe.Services
 
         public Task<bool> RegisterUser(UserModel userModel)
         {
+            _userStore.Add(userModel);
             return Task.FromResult(true);
         }
 
